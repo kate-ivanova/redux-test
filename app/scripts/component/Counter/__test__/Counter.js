@@ -1,5 +1,4 @@
 /* eslint no-unused-expressions: 0 */
-
 import counter from 'component/Counter';
 
 describe('CounterModel test', () => {

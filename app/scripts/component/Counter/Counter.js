@@ -1,6 +1,6 @@
+/* eslint no-unused-vars: "off" */
 import template from './Counter.jade';
 import './Counter.css';
-/* eslint no-unused-vars: "off" */
 import {createStore} from 'redux';
 import React from 'react';
 

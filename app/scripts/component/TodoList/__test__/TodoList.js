@@ -24,7 +24,8 @@ describe('todoList test', () => {
     expect(todoList(stateBefore, action)).to.be.eql(stateAfter);
   });
   it('completes item in todoList (length = 3)', () => {
-    const stateBefore = [{
+    const stateBefore = [
+      {
         id: 0,
         text: 'Learn Redux',
         completed: false,
@@ -38,7 +39,7 @@ describe('todoList test', () => {
         id: 2,
         text: 'Write task',
         completed: false,
-      }
+      },
     ];
 
     const action = {
@@ -46,7 +47,8 @@ describe('todoList test', () => {
       id: 0,
     };
 
-    const stateAfter = [{
+    const stateAfter = [
+      {
         id: 0,
         text: 'Learn Redux',
         completed: true,
@@ -60,7 +62,7 @@ describe('todoList test', () => {
         id: 2,
         text: 'Write task',
         completed: false,
-      }
+      },
     ];
 
     deepFreeze(stateBefore);

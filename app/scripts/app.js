@@ -1,24 +1,34 @@
+/* eslint no-unused-vars: "off" */
 import {createStore} from 'redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import counter from 'component/Counter';
 
-class App {
-  constructor() {
-    this.store = createStore(this._counter);
-    this._logState();
-    this.store.subscribe(() => this._logState());
-  }
-  _counter(state = 0, action) {
-    switch (action.type) {
-      case 'INCREMENT':
-        return state + 1;
-      case 'DECREMENT':
-        return state - 1;
-      default:
-        return state;
-    }
-  }
-  _logState() {
-    console.log(`current state: ${this.store.getState()}`);
-  }
-}
+const app = () => {
+  const Counter = ({value, onIncrement, onDecrement}) => (
+    <div>
+      <h1>{value}</h1>
+      <button onClick={onDecrement}>-</button>
+      <button onClick={onIncrement}>+</button>
+    </div>
+  );
+  const store = createStore(counter);
+  const render = () => {
+    ReactDOM.render(
+      <Counter
+        value = {store.getState()}
+        onIncrement = {() => {
+          store.dispatch({type: 'INCREMENT'});
+        }}
+        onDecrement = {() => {
+          store.dispatch({type: 'DECREMENT'});
+        }}
+      />,
+      document.getElementById('counter')
+    );
+  };
+  store.subscribe(render);
+  render();
+};
 
-export default App;
+export default app;

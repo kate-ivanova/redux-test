@@ -10,7 +10,7 @@ describe('todoList test', () => {
       completed: false,
     };
 
-    const action = {type: 'TOGGLE', id: 0};
+    const action = {type: 'TOGGLE_TODO', id: 0};
 
     const stateAfter = {
       id: 0,

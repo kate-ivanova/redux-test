@@ -7,14 +7,14 @@ const todoItem = (state, action) => {
     return state;
   }
   switch (action.type) {
-    case 'ADD': {
+    case 'ADD_TODO': {
       return {
         id: action.id,
         text: action.text,
         completed: false,
       };
     }
-    case 'TOGGLE': {
+    case 'TOGGLE_TODO': {
       if (state.id === action.id) {
         return {
           ...state,

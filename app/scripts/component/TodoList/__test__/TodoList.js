@@ -7,7 +7,7 @@ describe('todoList test', () => {
     const stateBefore = [];
 
     const action = {
-      type: 'ADD',
+      type: 'ADD_TODO',
       id: 0,
       text: 'Learn Redux',
     };
@@ -43,7 +43,7 @@ describe('todoList test', () => {
     ];
 
     const action = {
-      type: 'TOGGLE',
+      type: 'TOGGLE_TODO',
       id: 0,
     };
 

@@ -9,13 +9,13 @@ const todoList = (state = [], action) => {
     return state;
   }
   switch (action.type) {
-    case 'ADD': {
+    case 'ADD_TODO': {
       return [
         ...state,
         todoItem(undefined, action),
       ];
     }
-    case 'TOGGLE': {
+    case 'TOGGLE_TODO': {
       return state.map(item => todoItem(item, action));
     }
     default: {

@@ -1,10 +1,12 @@
 /* eslint no-unused-vars: "off" */
-import {createStore} from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
 import counter from 'component/Counter';
 
 const app = () => {
+  const store = createStore(counter);
+
   const Counter = ({value, onIncrement, onDecrement}) => (
     <div>
       <h1>{value}</h1>
@@ -12,7 +14,7 @@ const app = () => {
       <button onClick={onIncrement}>+</button>
     </div>
   );
-  const store = createStore(counter);
+
   const render = () => {
     ReactDOM.render(
       <Counter
@@ -27,6 +29,7 @@ const app = () => {
       document.getElementById('counter')
     );
   };
+
   store.subscribe(render);
   render();
 };

@@ -24,7 +24,7 @@ const app = () => {
       }
     }
   };
-  // --------------------- actions ----------------------------
+  // -------------------- action creators -----------------------
   const setVisibilityFilter = filter => {
     return {
       type: 'SET_VISIBILITY_FILTER',

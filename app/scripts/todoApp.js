@@ -3,12 +3,13 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import todoList from 'component/todoList';
 import visibilityFilter from 'component/visibilityFilter';
 
 let nextTodoId = 0;
 
-const todoApp = () => {
+const app = () => {
   const getVisibleTodos = (todoList, filter) => {
     switch (filter) {
       case 'COMPLETED': {
@@ -49,7 +50,7 @@ const todoApp = () => {
       })}
     </ul>
   );
-  const AddTodoItem = ({store}) => {
+  const AddTodoItem = (props, {store}) => {
     let input;
     return (
       <div>
@@ -74,10 +75,13 @@ const todoApp = () => {
       </div>
     );
   };
+  AddTodoItem.contextTypes = {
+    store: React.PropTypes.object,
+  };
 
   class VisibleTodoList extends Component {
     componentDidMount() {
-      const {store} = this.props;
+      const {store} = this.context;
       this.unsubscribe = store.subscribe(() =>
         this.forceUpdate()
       );
@@ -87,7 +91,7 @@ const todoApp = () => {
     }
     render() {
       const props = this.props;
-      const {store} = props;
+      const {store} = this.context;
       const state = store.getState();
 
       return (
@@ -105,10 +109,13 @@ const todoApp = () => {
       );
     }
   }
+  VisibleTodoList.contextTypes = {
+    store: React.PropTypes.object,
+  };
 
   class FilterLink extends Component {
     componentDidMount() {
-      const {store} = this.props;
+      const {store} = this.context;
       this.unsubscribe = store.subscribe(() =>
         this.forceUpdate()
       );
@@ -118,7 +125,7 @@ const todoApp = () => {
     }
     render() {
       const props = this.props;
-      const {store} = props;
+      const {store} = this.context;
       const state = store.getState();
 
       return (
@@ -138,6 +145,9 @@ const todoApp = () => {
       );
     }
   }
+  FilterLink.contextTypes = {
+    store: React.PropTypes.object,
+  };
 
   const Link = ({
     active,
@@ -159,24 +169,21 @@ const todoApp = () => {
     );
   };
 
-  const Filters = ({store}) => (
+  const Filters = () => (
     <div>
       <FilterLink
-        store={store}
         filter="ALL"
       >
         ALL
       </FilterLink>
       {' '}
       <FilterLink
-        store={store}
         filter="ACTIVE"
       >
         ACTIVE
       </FilterLink>
       {' '}
       <FilterLink
-        store={store}
         filter="COMPLETED"
       >
         COMPLETED
@@ -185,24 +192,29 @@ const todoApp = () => {
   );
   // -------------------------------------------------------------
 
-  const TodoApp = ({store}) => (
+  const TodoApp = () => (
     <div style={{
       marginTop: 50,
     }}>
       <h1>Todo list</h1>
-      <AddTodoItem store={store}/>
-      <Filters store={store}/>
-      <VisibleTodoList store={store}/>
+      <AddTodoItem/>
+      <Filters/>
+      <VisibleTodoList/>
     </div>
   );
 
+  const todoApp = combineReducers({
+    todoList,
+    visibilityFilter,
+  });
+
   ReactDOM.render(
-    <TodoApp store={createStore(combineReducers({
-      todoList,
-      visibilityFilter,
-    }))}/>,
+    <Provider store={createStore(todoApp)}
+    >
+      <TodoApp />
+    </Provider>,
     document.getElementById('todo-list')
   );
 };
 
-export default todoApp;
+export default app;

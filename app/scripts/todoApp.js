@@ -1,9 +1,8 @@
 /* eslint no-unused-vars: "off" */
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
-import {combineReducers} from 'redux';
-import {Provider} from 'react-redux';
+import {createStore, combineReducers} from 'redux';
+import {Provider, connect} from 'react-redux';
 import todoList from 'component/todoList';
 import visibilityFilter from 'component/visibilityFilter';
 
@@ -79,39 +78,24 @@ const app = () => {
     store: React.PropTypes.object,
   };
 
-  class VisibleTodoList extends Component {
-    componentDidMount() {
-      const {store} = this.context;
-      this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
-      );
-    }
-    componentWillUnmount() {
-      this.unsubscribe();
-    }
-    render() {
-      const props = this.props;
-      const {store} = this.context;
-      const state = store.getState();
-
-      return (
-        <TodoList
-          todoList={
-            getVisibleTodos(state.todoList, state.visibilityFilter)
-          }
-          onTodoClick={id =>
-            store.dispatch({
-              type: 'TOGGLE_TODO',
-              id,
-            })
-          }
-        />
-      );
-    }
-  }
-  VisibleTodoList.contextTypes = {
-    store: React.PropTypes.object,
+  const mapStateToProps = state => {
+    return {
+      todoList: getVisibleTodos(state.todoList, state.visibilityFilter),
+    };
   };
+
+  const mapDispatchToProps = dispatch => {
+    return {
+      onTodoClick: id => {
+        dispatch({
+          type: 'TOGGLE_TODO',
+          id,
+        });
+      },
+    };
+  };
+
+  const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 
   class FilterLink extends Component {
     componentDidMount() {

@@ -1,13 +1,17 @@
 /* eslint no-unused-vars: "off" */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ContentLayout from './components/ContentLayout';
+import ContentLayout from 'containers/ContentLayout';
 import configureStore from './configureStore';
 
 const app = () => {
   const store = configureStore();
   ReactDOM.render(
-    <ContentLayout store={store}/>,
+    <div>
+      <h1>Redux test app</h1>
+      <ContentLayout store={store}/>
+    </div>
+    ,
     document.getElementById('content-layout')
   );
 };

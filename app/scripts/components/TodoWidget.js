@@ -1,17 +1,17 @@
 /* eslint no-unused-vars: "off" */
 import React from 'react';
 import AddTodoItem from 'containers/AddTodoItem';
-import Filters from 'components/Filters';
+import FiltersWidget from 'components/FiltersWidget';
 import VisibleTodoList from 'containers/VisibleTodoList';
 
-const TodoWidget = () => (
+const TodoWidget = ({params}) => (
   <div style={{
     marginTop: 50,
   }}>
-    <h1>Todo list</h1>
+    <h2>Todo list</h2>
     <AddTodoItem/>
-    <Filters/>
-    <VisibleTodoList/>
+    <FiltersWidget/>
+    <VisibleTodoList filter={params.filter || 'all'}/>
   </div>
 );
 

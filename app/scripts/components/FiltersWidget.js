@@ -2,26 +2,26 @@
 import React from 'react';
 import FilterLink from 'containers/FilterLink';
 
-const Filters = () => (
+const FiltersWidget = () => (
   <div>
     <FilterLink
-      filter="ALL"
+      filter="all"
     >
       ALL
     </FilterLink>
     {' '}
     <FilterLink
-      filter="ACTIVE"
+      filter="active"
     >
       ACTIVE
     </FilterLink>
     {' '}
     <FilterLink
-      filter="COMPLETED"
+      filter="completed"
     >
       COMPLETED
     </FilterLink>
   </div>
 );
 
-export default Filters;
+export default FiltersWidget;

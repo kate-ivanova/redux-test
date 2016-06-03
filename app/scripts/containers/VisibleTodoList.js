@@ -6,12 +6,12 @@ import {toggleTodo} from 'actions/TodoListActions';
 
 const getVisibleTodos = (todoList, filter) => {
   switch (filter) {
-    case 'COMPLETED': {
+    case 'completed': {
       return todoList.filter(t =>
         t.completed
       );
     }
-    case 'ACTIVE': {
+    case 'active': {
       return todoList.filter(t =>
         !t.completed
       );
@@ -22,8 +22,8 @@ const getVisibleTodos = (todoList, filter) => {
   }
 };
 
-const mapStateToTodoListProps = state => ({
-  todoList: getVisibleTodos(state.todoList, state.visibilityFilter),
+const mapStateToTodoListProps = (state, ownProps) => ({
+  todoList: getVisibleTodos(state.todoList, ownProps.filter),
 });
 
 const mapDispatchToTodoListProps = dispatch => ({

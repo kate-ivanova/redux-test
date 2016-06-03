@@ -8,12 +8,22 @@ export default class ServerAPI extends ServerClient {
     return false;
   }
 
-  getData() {
-    return this.get({
-      url: '/api',
-      stub: async => {
-        async.resolve('stub data');
-      },
-    });
+  getState() {
+    try {
+      const serializedState = localStorage.getItem('state');
+      if (serializedState === null) {
+        return undefined;
+      }
+      return JSON.parse(serializedState);
+    } catch (err) {
+      return undefined;
+    }
+  }
+  setState(state) {
+    try {
+      const serializedState = JSON.stringify(state);
+      localStorage.setItem('state', serializedState);
+    } catch (err) {
+    }
   }
 }

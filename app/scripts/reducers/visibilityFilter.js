@@ -1,7 +1,4 @@
 /* eslint no-unused-vars: "off" */
-import template from './VisibilityFilter.jade';
-import './VisibilityFilter.css';
-
 const visibilityFilter = (state = 'ALL', action) => {
   if (!action) {
     return state;

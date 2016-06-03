@@ -1,7 +1,4 @@
 /* eslint no-unused-vars: "off" */
-import template from './TodoItem.jade';
-import './TodoItem.css';
-
 const todoItem = (state, action) => {
   if (!action) {
     return state;

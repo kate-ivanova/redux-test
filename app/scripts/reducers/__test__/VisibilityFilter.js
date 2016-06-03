@@ -1,5 +1,5 @@
 /* eslint no-unused-expressions: 0 */
-import visibilityFilter from 'component/VisibilityFilter';
+import visibilityFilter from '../VisibilityFilter';
 
 describe('visibilityFilter test', () => {
   it('returns default filter', () => {

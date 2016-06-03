@@ -1,8 +1,6 @@
 /* eslint no-unused-vars: "off" */
 /* eslint no-else-return: "off" */
-import template from './TodoList.jade';
-import './TodoList.css';
-import todoItem from 'component/TodoList/TodoItem';
+import todoItem from 'reducers/todoItem';
 
 const todoList = (state = [], action) => {
   if (!action) {

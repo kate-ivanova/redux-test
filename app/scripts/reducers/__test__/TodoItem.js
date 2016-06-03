@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: "off" */
 import deepFreeze from 'deep-freeze';
-import todoItem from 'component/TodoList/TodoItem';
+import todoItem from '../TodoItem';
 
 describe('todoList test', () => {
   it('toggles todoItem', () => {

@@ -1,6 +1,6 @@
 /* eslint no-unused-expressions: 0 */
 import deepFreeze from 'deep-freeze';
-import todoList from 'component/TodoList';
+import todoList from '../TodoList';
 
 describe('todoList test', () => {
   it('adds item to todoList', () => {

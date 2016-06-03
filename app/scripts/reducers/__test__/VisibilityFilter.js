@@ -1,5 +1,5 @@
 /* eslint no-unused-expressions: 0 */
-import visibilityFilter from '../VisibilityFilter';
+import visibilityFilter from 'reducers/visibilityFilter';
 
 describe('visibilityFilter test', () => {
   it('returns default filter', () => {

@@ -1,8 +1,5 @@
 /* eslint no-unused-vars: "off" */
 const todoItem = (state, action) => {
-  if (!action) {
-    return state;
-  }
   switch (action.type) {
     case 'ADD_TODO': {
       return {

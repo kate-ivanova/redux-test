@@ -8,8 +8,26 @@ import ContentLayout from 'containers/ContentLayout';
 import configureStore from './configureStore';
 import TodoWidget from 'components/TodoWidget';
 
+const mode = process.env.MODE || 'DEBUG';
+
+const dispatchWrap = store => {
+  const rawDispatch = store.dispatch;
+  return (action => {
+    console.group(action.type);
+    console.log('%c prev state', 'color: gray', store.getState());
+    console.log('%c action', 'color: blue', action);
+    const returnValue = rawDispatch(action);
+    console.log('%c curr state', 'color: green', store.getState());
+    console.groupEnd(action.type);
+    return returnValue;
+  });
+};
+
 const app = () => {
   const store = configureStore();
+  if (mode === 'DEBUG') {
+    store.dispatch = dispatchWrap(store);
+  }
   const history = syncHistoryWithStore(browserHistory, store);
 
   ReactDOM.render(

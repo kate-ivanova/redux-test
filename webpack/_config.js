@@ -43,7 +43,7 @@ const doConfig = opts => {
           loader: 'babel',
           query: {
             presets: ['react', 'es2015', 'stage-0'],
-            plugins: ['add-module-exports'],
+            plugins: ['add-module-exports', 'transform-object-rest-spread'],
           },
         },
         {

@@ -4,18 +4,15 @@ import AddTodoItem from 'containers/AddTodoItem';
 import FiltersWidget from 'components/FiltersWidget';
 import VisibleTodoList from 'containers/VisibleTodoList';
 
-const TodoWidget = ({params}) => {
-  console.log(params);
-  return (
-    <div style={{
-      marginTop: 50,
-    }}>
-      <h2>Todo list</h2>
-      <AddTodoItem/>
-      <FiltersWidget/>
-      <VisibleTodoList filter={params.filter || 'all'}/>
-    </div>
-  );
-};
+const TodoWidget = ({params}) => (
+  <div style={{
+    marginTop: 50,
+  }}>
+    <h2>Todo list</h2>
+    <AddTodoItem/>
+    <FiltersWidget/>
+    <VisibleTodoList filter={params.filter || 'all'}/>
+  </div>
+);
 
 export default TodoWidget;

@@ -1,17 +1,27 @@
 /* eslint no-unused-vars: "off" */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Router, Route, browserHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import {syncHistoryWithStore} from 'react-router-redux';
 import ContentLayout from 'containers/ContentLayout';
 import configureStore from './configureStore';
+import TodoWidget from 'components/TodoWidget';
 
 const app = () => {
   const store = configureStore();
+  const history = syncHistoryWithStore(browserHistory, store);
+  console.log(history);
+
   ReactDOM.render(
     <div>
       <h1>Redux test app</h1>
-      <ContentLayout store={store}/>
-    </div>
-    ,
+      <Provider store={store}>
+        <Router history={history} >
+          <Route path="/(:filter)" component={TodoWidget} />
+        </Router>
+      </Provider>
+    </div>,
     document.getElementById('content-layout')
   );
 };

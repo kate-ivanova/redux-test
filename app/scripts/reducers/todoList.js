@@ -23,3 +23,21 @@ const todoList = (state = [], action) => {
 };
 
 export default todoList;
+
+export const getVisibleTodos = (todoList, filter) => {
+  switch (filter) {
+    case 'completed': {
+      return todoList.filter(t =>
+        t.completed
+      );
+    }
+    case 'active': {
+      return todoList.filter(t =>
+        !t.completed
+      );
+    }
+    default: {
+      return todoList;
+    }
+  }
+};

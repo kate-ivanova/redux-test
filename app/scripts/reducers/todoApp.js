@@ -1,5 +1,5 @@
 import visibilityFilter from 'reducers/visibilityFilter';
-import todoList from 'reducers/todoList';
+import todoList, * as fromTodoList from 'reducers/todoList';
 import {combineReducers} from 'redux';
 
 const todoApp = combineReducers({
@@ -8,3 +8,7 @@ const todoApp = combineReducers({
 });
 
 export default todoApp;
+
+export const getVisibleTodos = (state, filter) => (
+  fromTodoList.getVisibleTodos(state.todoList, filter)
+);

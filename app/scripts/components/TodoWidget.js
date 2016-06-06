@@ -9,9 +9,9 @@ const TodoWidget = ({params}) => (
     marginTop: 50,
   }}>
     <h2>Todo list</h2>
-    <AddTodoItem/>
-    <FiltersWidget/>
-    <VisibleTodoList filter={params.filter || 'all'}/>
+    <AddTodoItem />
+    <FiltersWidget />
+    <VisibleTodoList params={params}/>
   </div>
 );
 

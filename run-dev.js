@@ -7,6 +7,7 @@ new WebpackDevServer((webpack(webpackConfig)), {
   filename: 'bundle.js',
   inline: true,
   hot: true,
+  historyApiFallback: true,
   stats: {
     colors: true,
   },

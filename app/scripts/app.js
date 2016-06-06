@@ -1,7 +1,7 @@
 /* eslint no-unused-vars: "off" */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, Redirect, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 import ContentLayout from 'containers/ContentLayout';
@@ -11,7 +11,6 @@ import TodoWidget from 'components/TodoWidget';
 const app = () => {
   const store = configureStore();
   const history = syncHistoryWithStore(browserHistory, store);
-  console.log(history);
 
   ReactDOM.render(
     <div>
